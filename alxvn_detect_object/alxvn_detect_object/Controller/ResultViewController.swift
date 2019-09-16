@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 
 class ResultViewController: UIViewController, AVSpeechSynthesizerDelegate  {
+    private var imgSrreenBackground: UIImageView?
     
     @IBOutlet weak var imgResult: UIImageView!
 
@@ -25,10 +26,17 @@ class ResultViewController: UIViewController, AVSpeechSynthesizerDelegate  {
         
         setUpNavBar()
         synthesizer.delegate = self
+        
+        imgSrreenBackground = Util.assignbackground(view: self.view)
+        
+        self.view.addSubview(imgSrreenBackground!)
+        self.view.sendSubviewToBack(imgSrreenBackground!)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        Util.setLabelTextColor(parentView: self.view)
         imgResult.image = self.imageResult
+        imgSrreenBackground!.image = Util.initImageBackground(imageName: Constant.THEMES[Config.THEMES_NAME]!["bgScreen"]! as? String ?? "")
         
     }
     

@@ -70,6 +70,7 @@ class MainController: UIViewController, AVCapturePhotoCaptureDelegate, AVSpeechS
 //        swipeLeft.direction = .left
 //        self.view.addGestureRecognizer(swipeLeft)
         
+        btnDetect.layer.cornerRadius = 5
         
         
     }
@@ -374,7 +375,7 @@ class MainController: UIViewController, AVCapturePhotoCaptureDelegate, AVSpeechS
             let message = json!["message"] as? String ?? Constant.SERVER_ERROR
             
             if status{
-                KRProgressHUD.dismiss()
+                
                 
                 //go to result screen
                 if self.isSettingClick{
@@ -384,20 +385,20 @@ class MainController: UIViewController, AVCapturePhotoCaptureDelegate, AVSpeechS
 //                self.playVoice(message: message)
 //
 //                Util.showAlert(message: message, type: Constant.ALERT_MODE_INFO)
-                
-                let strBase64 = json!["imgResult"] as? String ?? ""
-                let dataDecoded:NSData = NSData(base64Encoded: strBase64, options: NSData.Base64DecodingOptions(rawValue: 0))!
-                self.imgResult  = UIImage(data: dataDecoded as Data)!
-                self.messageResult = message
-                
                 let count = json!["count"] as? Int ?? 0
                 if count == 0{
                     
                     self.playVoice(message: message)
+                    Util.showAlert(message: message, type: Constant.ALERT_MODE_INFO)
                     return
                 }
                 
-                
+                KRProgressHUD.dismiss()
+                let strBase64 = json!["imgResult"] as? String ?? ""
+                let dataDecoded:NSData = NSData(base64Encoded: strBase64, options: NSData.Base64DecodingOptions(rawValue: 0))!
+                self.imgResult  = UIImage(data: dataDecoded as Data)!
+                self.messageResult = message
+ 
                 self.performSegue(withIdentifier: "SegueResult", sender: self)
                 
             }else{
