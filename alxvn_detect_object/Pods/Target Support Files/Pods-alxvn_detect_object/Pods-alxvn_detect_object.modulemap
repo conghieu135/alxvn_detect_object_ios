@@ -1,0 +1,6 @@
+module Pods_alxvn_detect_object {
+  umbrella header "Pods-alxvn_detect_object-umbrella.h"
+
+  export *
+  module * { export * }
+}

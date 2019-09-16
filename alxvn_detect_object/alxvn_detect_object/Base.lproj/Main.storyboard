@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="ipad9_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraMono-Bold.otf">
+            <string>FiraMono-Bold</string>
+        </array>
+        <array key="MPLUS1p-Bold.ttf">
+            <string>Mplus1p-Bold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Init App View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="InitAppViewController" customModule="alxvn_detect_object" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="-1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Allexceed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDB-I0-f67">
+                                <rect key="frame" x="195" y="76" width="378" height="91"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="FiraMono-Bold" family="Fira Mono" pointSize="60"/>
+                                <color key="textColor" red="0.3540785313" green="0.61832046510000005" blue="0.94908052679999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="908-iO-lqS"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="301" y="1"/>
+        </scene>
+        <!--Main Controller-->
+        <scene sceneID="kRI-hf-5mS">
+            <objects>
+                <viewController id="5j7-1V-kyi" customClass="MainController" customModule="alxvn_detect_object" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="o46-ap-SAl">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RDG-Mn-NDY">
+                                <rect key="frame" x="91" y="939" width="571" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U4d-R4-UHS">
+                                        <rect key="frame" x="210" y="0.0" width="150" height="65"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Mplus1p-Bold" family="Mplus 1p Bold" pointSize="24"/>
+                                        <state key="normal" title="Detect">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JfT-Ii-ipM">
+                                <rect key="frame" x="20" y="194" width="712" height="652"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hsg-R4-0nV">
+                                        <rect key="frame" x="0.0" y="0.0" width="712" height="652"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </view>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="imgNoImage" translatesAutoresizingMaskIntoConstraints="NO" id="Lm1-rw-glM">
+                                        <rect key="frame" x="0.0" y="0.0" width="712" height="652"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                </subviews>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="-1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Allexceed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nY2-hr-PMx">
+                                <rect key="frame" x="187" y="90" width="378" height="91"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="FiraMono-Bold" family="Fira Mono" pointSize="60"/>
+                                <color key="textColor" red="0.3540785313" green="0.61832046510000005" blue="0.94908052679999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="-1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hieutc start at 09:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZ3-up-0q1">
+                                <rect key="frame" x="88" y="864" width="577" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="FiraMono-Bold" family="Fira Mono" pointSize="26"/>
+                                <color key="textColor" red="1" green="0.39980919339999998" blue="0.068980146960000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="8XG-8A-cuf"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="OML-UB-2CU"/>
+                    <connections>
+                        <outlet property="btnDetect" destination="U4d-R4-UHS" id="wu1-bg-g7D"/>
+                        <outlet property="cameraView" destination="hsg-R4-0nV" id="ULg-Qb-7Rr"/>
+                        <outlet property="imgAvatar" destination="Lm1-rw-glM" id="5j8-2s-d1V"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cmg-lI-S7R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1817.1875" y="-107.2265625"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qW2-kl-381">
+            <objects>
+                <navigationController storyboardIdentifier="MainID" automaticallyAdjustsScrollViewInsets="NO" id="ESs-UK-yno" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6W7-3e-G0t">
+                        <rect key="frame" x="0.0" y="20" width="768" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5j7-1V-kyi" kind="relationship" relationship="rootViewController" id="yqU-Vw-F2D"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FnR-WZ-I4c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1051.5625" y="-107.2265625"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="imgNoImage" width="512" height="512"/>
+    </resources>
+</document>
