@@ -12,7 +12,7 @@ import KRProgressHUD
 
 
 
-class MainController: UIViewController, AVCapturePhotoCaptureDelegate {
+class MainController: UIViewController, AVCapturePhotoCaptureDelegate, AVSpeechSynthesizerDelegate {
     
     
     @IBOutlet weak var cameraView: UIView!
@@ -47,10 +47,16 @@ class MainController: UIViewController, AVCapturePhotoCaptureDelegate {
     //4. undo end
     private var function:Int = 0
     
+    
+    let synthesizer = AVSpeechSynthesizer()
+    private var utterance: AVSpeechUtterance?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         imgSrreenBackground = Util.assignbackground(view: self.view)
+        synthesizer.delegate = self
+        
         
         self.view.addSubview(imgSrreenBackground!)
         self.view.sendSubviewToBack(imgSrreenBackground!)
@@ -59,9 +65,11 @@ class MainController: UIViewController, AVCapturePhotoCaptureDelegate {
         
         setUpNavBar()
         
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
-        swipeLeft.direction = .left
-        self.view.addGestureRecognizer(swipeLeft)
+//        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+//        swipeLeft.direction = .left
+//        self.view.addGestureRecognizer(swipeLeft)
+        
+        
         
     }
     
@@ -151,7 +159,7 @@ class MainController: UIViewController, AVCapturePhotoCaptureDelegate {
             [NSAttributedString.Key.foregroundColor: UIColor.blue,
              NSAttributedString.Key.font: UIFont(name: "Mplus1p-Bold", size: 22)!]
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: Constant.SETTING, style: .done, target: self, action: #selector(self.btnSettingClick(sender:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: Constant.SETTING, style: .done, target: self, action: #selector(self.btnSettingClick(sender:)))
         
 //        rightBarButton = UIBarButtonItem.init(title: Constant.MENU, style: .done, target: self, action: #selector(self.btnMenuClick))
 //        self.navigationItem.rightBarButtonItem = rightBarButton
@@ -170,7 +178,7 @@ class MainController: UIViewController, AVCapturePhotoCaptureDelegate {
         isSettingClick = true
         KRProgressHUD.dismiss()
         
-        self.performSegue(withIdentifier: "SegueConfirm", sender: self)
+        self.performSegue(withIdentifier: "SegueSetting", sender: self)
         
         
     }
@@ -204,7 +212,7 @@ class MainController: UIViewController, AVCapturePhotoCaptureDelegate {
             }
         }
         
-        currentCamera = frontCamera
+        currentCamera = backCamera
         
         print("setup device done")
     }
@@ -251,6 +259,7 @@ class MainController: UIViewController, AVCapturePhotoCaptureDelegate {
     }
     
     func executeGetFrameDetectImage(){
+        Util.showAlert(message: "", type: 0)
         
         let photoSettings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
         photoSettings.isAutoStillImageStabilizationEnabled = true
@@ -264,11 +273,13 @@ class MainController: UIViewController, AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         
         guard let imageData = photo.fileDataRepresentation() else {
+            KRProgressHUD.dismiss()
             print("no data")
             return
         }
         
         guard let image = UIImage(data: imageData) else {
+            KRProgressHUD.dismiss()
             print("no data")
             return
         }
@@ -282,25 +293,27 @@ class MainController: UIViewController, AVCapturePhotoCaptureDelegate {
     func sendImage(base64Str:String){
         
         let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
-        let url = URL(string: Config.SERVER_URL + Config.TIMECARD_INPUT_API)!
+        let url = URL(string: Config.SERVER_URL + Config.DETECT_OBJECT_API)!
         
         let parameterDictionary = [
-            "image_data" : base64Str,
-            "functionMode": self.function,
+            "image_data" : base64Str
             ] as [String : Any]
         
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"
+        request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("false", forHTTPHeaderField: "cache")
+//        request.timeoutInterval = TimeInterval(20)
         request.timeoutInterval = TimeInterval(Config.REQUEST_TIMEOUT)
         
         guard let httpBody = try? JSONSerialization.data(withJSONObject: parameterDictionary, options: []) else {
+            KRProgressHUD.dismiss()
             return
         }
         request.httpBody = httpBody
         
         if self.isSettingClick{
+            KRProgressHUD.dismiss()
             return
         }
         
@@ -309,10 +322,11 @@ class MainController: UIViewController, AVCapturePhotoCaptureDelegate {
             Util.showAlert(message: Constant.NETWORK_UNAVAILABLE, type: Constant.ALERT_MODE_ERROR)
             
             self.isFunctionButtonClick = false
+            KRProgressHUD.dismiss()
             return
         }
         
-        Util.showAlert(message: "", type: 0)
+        //Util.showAlert(message: "", type: 0)
         
         self.taskDetect = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
             
@@ -359,13 +373,16 @@ class MainController: UIViewController, AVCapturePhotoCaptureDelegate {
             let message = json!["message"] as? String ?? Constant.SERVER_ERROR
             
             if status{
-                KRProgressHUD.dismiss()
+                //KRProgressHUD.dismiss()
                 
                 //go to result screen
                 if self.isSettingClick{
+                    KRProgressHUD.dismiss()
                     return
                 }
-
+                self.playVoice(message: message)
+                
+                Util.showAlert(message: message, type: Constant.ALERT_MODE_INFO)
                 
             }else{
                 
@@ -390,7 +407,7 @@ class MainController: UIViewController, AVCapturePhotoCaptureDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        self.stopVoice()
 //        if segue.identifier == "SegueConfirm"{
 //            let destination = segue.destination as! ConfirmViewController
 //            destination.delegate = self
@@ -410,10 +427,24 @@ class MainController: UIViewController, AVCapturePhotoCaptureDelegate {
     }
     
     @IBAction func btnDetectClick(_ sender: Any) {
-        
+        executeGetFrameDetectImage()
     }
     
+    func playVoice(message: String!){
+        self.stopVoice()
+        
+        self.utterance = AVSpeechUtterance(string: message)
+        self.utterance!.voice = AVSpeechSynthesisVoice(language: Config.VOICE_LAGUAGE)
+        self.synthesizer.speak(self.utterance!)
+    }
     
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+       
+    }
+    
+    func stopVoice() {
+        self.synthesizer.stopSpeaking(at: .immediate)
+    }
     
 }
 

@@ -10,24 +10,14 @@ import Foundation
 
 class Config
 {
-    static var SERVER_URL = "http://192.168.10.144:8080"
+    static var SERVER_URL = "http://192.168.10.144:8989"
     static var CAMERA_DISPLAY_MODE = true
     static var HAS_CONFIG_FILE = false
     
     static let MAX_IMAGE_USER = 5
     
-    static let DETECT_AGE_GENDER_API = "/detect_age_gender/"
-    static let ADD_USER_IMAGE_API = "/add_user_image/"
-    static let TIMECARD_INPUT_API = "/start_end_working_time/"
-    static let FACE_RECOGNITION_API = "/face_recognition_confirm/"
-    static let UNDO_TIMECARD_INPUT_API = "/undo_timecard_input/"
-    static let GET_DATA_PM_STAFF_API = "/get_list_pm_staff_for_combobox/"
-    static let PM_UPDATE_TIMECARD_API = "/pm_update_timecard/"
-    static let SEND_MAIL_API = "/sendMail/"
-    static let UPDATE_CONFIG_API = "/update_config/"
-    
-    static let TIMECARD_LIST_API = "/user_timecard_list"
-    static let USER_LIST_API = "/users"
+    static let DETECT_OBJECT_API = "/detect_object_api/"
+
     
     static let REQUEST_TIMEOUT = 5 //second
     static let SEND_MAIL_TIMEOUT = 20 //second
