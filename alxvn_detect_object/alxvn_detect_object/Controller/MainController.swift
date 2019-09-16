@@ -300,7 +300,7 @@ class MainController: UIViewController, AVCapturePhotoCaptureDelegate, AVSpeechS
             ] as [String : Any]
         
         var request = URLRequest(url: url)
-        request.httpMethod = "GET"
+        request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("false", forHTTPHeaderField: "cache")
 //        request.timeoutInterval = TimeInterval(20)
