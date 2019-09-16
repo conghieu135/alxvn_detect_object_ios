@@ -33,7 +33,7 @@ class Config
     
     static let TIME_SHOW_ALERT = 2.0
     
-    static let VOICE_LAGUAGE = "en-US"
+    static let VOICE_LANGUAGE = "en-US"
     
     static let MAX_CONFIRM_FAIL = 3
     

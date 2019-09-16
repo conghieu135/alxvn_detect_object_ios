@@ -15,6 +15,7 @@ class Constant{
     static let APP_NAME = "Detect Object"
     static let SETTING = "Setting"
     static let SAVE = "Save"
+    static let BACK = "Back"
     
     static let LOOK_STRAIGHT = "Look straight"
     static let LOOK_UP = "Look up"

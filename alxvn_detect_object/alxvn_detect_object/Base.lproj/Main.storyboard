@@ -100,11 +100,43 @@
                         <outlet property="cameraView" destination="hsg-R4-0nV" id="ULg-Qb-7Rr"/>
                         <outlet property="imgAvatar" destination="Lm1-rw-glM" id="5j8-2s-d1V"/>
                         <segue destination="PM3-9K-7AI" kind="show" identifier="SegueSetting" id="EZc-To-4Hy"/>
+                        <segue destination="8cJ-vs-fRr" kind="show" identifier="SegueResult" id="nhi-Gn-QxM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cmg-lI-S7R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1817.1875" y="-107.2265625"/>
+        </scene>
+        <!--Result View Controller-->
+        <scene sceneID="Uky-WV-bgz">
+            <objects>
+                <viewController id="8cJ-vs-fRr" customClass="ResultViewController" customModule="alxvn_detect_object" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yXb-xz-mda">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="-1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Allexceed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="092-S7-k09">
+                                <rect key="frame" x="195" y="100" width="378" height="91"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="FiraMono-Bold" family="Fira Mono" pointSize="60"/>
+                                <color key="textColor" red="0.3540785313" green="0.61832046510000005" blue="0.94908052679999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="imgNoImage" translatesAutoresizingMaskIntoConstraints="NO" id="vz8-BR-7lS">
+                                <rect key="frame" x="20" y="199" width="728" height="805"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="1je-0U-ciE"/>
+                    </view>
+                    <connections>
+                        <outlet property="imgResult" destination="vz8-BR-7lS" id="vX9-Iq-QQJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cNv-FL-KJd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1816.40625" y="631.640625"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="l1c-Ir-etz">

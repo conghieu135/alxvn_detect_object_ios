@@ -46,7 +46,8 @@ class MainController: UIViewController, AVCapturePhotoCaptureDelegate, AVSpeechS
     //3. undo start
     //4. undo end
     private var function:Int = 0
-    
+    private var imgResult:UIImage = UIImage()
+    private var messageResult:String = ""
     
     let synthesizer = AVSpeechSynthesizer()
     private var utterance: AVSpeechUtterance?
@@ -373,16 +374,31 @@ class MainController: UIViewController, AVCapturePhotoCaptureDelegate, AVSpeechS
             let message = json!["message"] as? String ?? Constant.SERVER_ERROR
             
             if status{
-                //KRProgressHUD.dismiss()
+                KRProgressHUD.dismiss()
                 
                 //go to result screen
                 if self.isSettingClick{
-                    KRProgressHUD.dismiss()
+                    
                     return
                 }
-                self.playVoice(message: message)
+//                self.playVoice(message: message)
+//
+//                Util.showAlert(message: message, type: Constant.ALERT_MODE_INFO)
                 
-                Util.showAlert(message: message, type: Constant.ALERT_MODE_INFO)
+                let strBase64 = json!["imgResult"] as? String ?? ""
+                let dataDecoded:NSData = NSData(base64Encoded: strBase64, options: NSData.Base64DecodingOptions(rawValue: 0))!
+                self.imgResult  = UIImage(data: dataDecoded as Data)!
+                self.messageResult = message
+                
+                let count = json!["count"] as? Int ?? 0
+                if count == 0{
+                    
+                    self.playVoice(message: message)
+                    return
+                }
+                
+                
+                self.performSegue(withIdentifier: "SegueResult", sender: self)
                 
             }else{
                 
@@ -408,22 +424,16 @@ class MainController: UIViewController, AVCapturePhotoCaptureDelegate, AVSpeechS
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         self.stopVoice()
-//        if segue.identifier == "SegueConfirm"{
-//            let destination = segue.destination as! ConfirmViewController
-//            destination.delegate = self
-//        }
-//        else if segue.identifier == "SegueWebview"{
-//            let destination = segue.destination as! WebViewController
-//            destination.loadWebviewMode = self.loadwebViewMode
-//        }
-//        else if segue.identifier == "SegueNotificationPM"{
-//            let destination = segue.destination as! NotificationPMViewController
-//            destination.mailContentFromParent = lblResult.text!
-//            self.lblResult.text = ""
-//        }
-//        else{
-//
-//        }
+        if segue.identifier == "SegueResult"{
+            let destination = segue.destination as! ResultViewController
+            destination.imageResult = self.imgResult
+            destination.mesageResult = self.messageResult
+
+        }
+        
+        else{
+
+        }
     }
     
     @IBAction func btnDetectClick(_ sender: Any) {
@@ -434,7 +444,7 @@ class MainController: UIViewController, AVCapturePhotoCaptureDelegate, AVSpeechS
         self.stopVoice()
         
         self.utterance = AVSpeechUtterance(string: message)
-        self.utterance!.voice = AVSpeechSynthesisVoice(language: Config.VOICE_LAGUAGE)
+        self.utterance!.voice = AVSpeechSynthesisVoice(language: Config.VOICE_LANGUAGE)
         self.synthesizer.speak(self.utterance!)
     }
     

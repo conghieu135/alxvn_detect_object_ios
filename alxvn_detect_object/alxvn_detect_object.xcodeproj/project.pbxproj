@@ -28,6 +28,7 @@
 		29AA157D232F35C200747BBD /* FiraMono-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 29AA1578232F35C100747BBD /* FiraMono-Bold.otf */; };
 		29AA157E232F35C200747BBD /* MPLUS1p-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29AA1579232F35C100747BBD /* MPLUS1p-Bold.ttf */; };
 		29AA157F232F35C200747BBD /* MPLUS1p-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29AA157A232F35C200747BBD /* MPLUS1p-Light.ttf */; };
+		29AA1585232F67F500747BBD /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA1584232F67F500747BBD /* ResultViewController.swift */; };
 		E57654CE71BEFED4F1392A6D /* libPods-alxvn_detect_object.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A18EC7CEF0FFB77A204321 /* libPods-alxvn_detect_object.a */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		29AA1578232F35C100747BBD /* FiraMono-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraMono-Bold.otf"; sourceTree = "<group>"; };
 		29AA1579232F35C100747BBD /* MPLUS1p-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MPLUS1p-Bold.ttf"; sourceTree = "<group>"; };
 		29AA157A232F35C200747BBD /* MPLUS1p-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MPLUS1p-Light.ttf"; sourceTree = "<group>"; };
+		29AA1584232F67F500747BBD /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		3217B6D5745022CE796077C4 /* Pods-alxvn_detect_object.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alxvn_detect_object.release.xcconfig"; path = "Target Support Files/Pods-alxvn_detect_object/Pods-alxvn_detect_object.release.xcconfig"; sourceTree = "<group>"; };
 		6A570AB0AC977901253F5265 /* Pods-alxvn_detect_object.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alxvn_detect_object.debug.xcconfig"; path = "Target Support Files/Pods-alxvn_detect_object/Pods-alxvn_detect_object.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,6 +129,7 @@
 				29AA1570232F2B1900747BBD /* InitAppViewController.swift */,
 				29AA1571232F2B1900747BBD /* MainController.swift */,
 				29AA156F232F2B1900747BBD /* SettingViewController.swift */,
+				29AA1584232F67F500747BBD /* ResultViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				29AA1568232F2AA600747BBD /* UIFontEdit.swift in Sources */,
 				29AA156B232F2AA600747BBD /* UIImageEdit.swift in Sources */,
 				29AA156D232F2AA600747BBD /* Constant.swift in Sources */,
+				29AA1585232F67F500747BBD /* ResultViewController.swift in Sources */,
 				29AA1565232F2AA600747BBD /* Config.swift in Sources */,
 				29AA1573232F2B1900747BBD /* InitAppViewController.swift in Sources */,
 				29AA1574232F2B1900747BBD /* MainController.swift in Sources */,
