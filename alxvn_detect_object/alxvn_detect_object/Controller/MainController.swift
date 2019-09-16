@@ -388,7 +388,7 @@ class MainController: UIViewController, AVCapturePhotoCaptureDelegate, AVSpeechS
                 let count = json!["count"] as? Int ?? 0
                 if count == 0{
                     
-                    self.playVoice(message: message)
+                    //self.playVoice(message: message)
                     Util.showAlert(message: message, type: Constant.ALERT_MODE_INFO)
                     return
                 }
